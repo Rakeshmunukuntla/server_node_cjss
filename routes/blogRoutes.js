@@ -38,11 +38,12 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", upload.single("banner"), async (req, res) => {
   try {
-    const baseUrl = `${req.protocol}://${req.get("host")}`;
+    // const baseUrl = `${req.protocol}://${req.get("host")}`;
 
     const blogData = {
       ...req.body,
-      banner: req.file ? `${baseUrl}/uploads/${req.file.filename}` : "",
+      // banner: req.file ? `${baseUrl}/uploads/${req.file.filename}` : "",
+      banner: req.file?.path || "",
     };
 
     const blog = await Blog.create(blogData);
@@ -64,13 +65,33 @@ router.post("/", upload.single("banner"), async (req, res) => {
 //     res.status(500).json({ message: "Error updating blog" });
 //   }
 // });
+
+// router.put("/:id", upload.single("banner"), async (req, res) => {
+//   try {
+//     const baseUrl = `${req.protocol}://${req.get("host")}`;
+//     const updateData = { ...req.body };
+
+//     if (req.file) {
+//       updateData.banner = `${baseUrl}/uploads/${req.file.filename}`;
+//     }
+
+//     const blog = await Blog.findByIdAndUpdate(req.params.id, updateData, {
+//       new: true,
+//     });
+
+//     res.json(blog);
+//   } catch (err) {
+//     console.error("Update blog error:", err);
+//     res.status(500).json({ message: "Error updating blog" });
+//   }
+// });
+
 router.put("/:id", upload.single("banner"), async (req, res) => {
   try {
-    const baseUrl = `${req.protocol}://${req.get("host")}`;
     const updateData = { ...req.body };
 
     if (req.file) {
-      updateData.banner = `${baseUrl}/uploads/${req.file.filename}`;
+      updateData.banner = req.file.path; // Cloudinary URL
     }
 
     const blog = await Blog.findByIdAndUpdate(req.params.id, updateData, {
