@@ -5,7 +5,7 @@ const Application = require("../models/Application");
 const uploadResume = require("../middleware/resumeUpload");
 
 // GET all applications
-router.get("/apply", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const applications = await Application.find().sort({ createdAt: -1 });
 
