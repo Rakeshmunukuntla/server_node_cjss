@@ -1,17 +1,47 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-const ApplicationSchema = new mongoose.Schema(
-  {
-    jobId: String,
-    jobTitle: String,
+// const ApplicationSchema = new mongoose.Schema(
+//   {
+//     jobId: {
+//       type: String,
+//       required: true,
+//     },
+//     jobTitle: {
+//       type: String,
+//       required: true,
+//     },
 
-    firstName: String,
-    lastName: String,
-    qualification: String,
+//     firstName: {
+//       type: String,
+//       required: true,
+//     },
 
-    resumeUrl: String, // Cloudinary URL
-  },
-  { timestamps: true }
-);
+//     lastName: {
+//       type: String,
+//       required: true,
+//     },
 
-module.exports = mongoose.model("Application", ApplicationSchema);
+//     email: {
+//       type: String,
+//       required: true,
+//     },
+
+//     phone: {
+//       type: String,
+//       required: true,
+//     },
+
+//     qualification: {
+//       type: String,
+//       required: true,
+//     },
+
+//     resumeUrl: {
+//       type: String,
+//       required: true,
+//     },
+//   },
+//   { timestamps: true }
+// );
+
+// module.exports = mongoose.model("Application", ApplicationSchema);
