@@ -9,8 +9,6 @@ const jobRoutes = require("./routes/jobRoutes");
 
 const app = express();
 
-
-
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -19,6 +17,9 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/blogs", blogRoutes);
 app.use("/jobs", jobRoutes);
+
+const applicationRoutes = require("./routes/applicationsRoute");
+app.use("/applications", applicationRoutes);
 
 const path = require("path");
 // const express = require("express");
