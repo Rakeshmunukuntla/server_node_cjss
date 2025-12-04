@@ -6,6 +6,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const jobRoutes = require("./routes/jobRoutes");
+const resumeRoutes = require("./routes/resumeRoutes");
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/blogs", blogRoutes);
 app.use("/jobs", jobRoutes);
+app.use("/resumes", resumeRoutes);
 
 const applicationRoutes = require("./routes/applicationsRoute");
 app.use("/applications", applicationRoutes);
