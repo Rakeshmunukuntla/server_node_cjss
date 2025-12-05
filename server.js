@@ -7,6 +7,8 @@ const authRoutes = require("./routes/authRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const jobRoutes = require("./routes/jobRoutes");
 const resumeRoutes = require("./routes/resumeRoutes");
+const conversationsRouter = require("./routes/conversations");
+const contactRoutes = require("./routes/contactRoute");
 
 const app = express();
 
@@ -19,6 +21,8 @@ app.use("/auth", authRoutes);
 app.use("/blogs", blogRoutes);
 app.use("/jobs", jobRoutes);
 app.use("/resumes", resumeRoutes);
+app.use("/conversations", conversationsRouter);
+app.use("/contact", contactRoutes);
 
 const applicationRoutes = require("./routes/applicationsRoute");
 app.use("/applications", applicationRoutes);
