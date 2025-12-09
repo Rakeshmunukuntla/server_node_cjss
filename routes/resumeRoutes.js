@@ -62,4 +62,47 @@ router.get("/", async (req, res) => {
   }
 });
 
+// DELETE /resumes/:id  → delete resume from DB + Supabase bucket
+router.delete("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    // 1️⃣ Find resume in MongoDB
+    const resume = await Resume.findById(id);
+    if (!resume) {
+      return res
+        .status(404)
+        .json({ success: false, error: "Resume not found" });
+    }
+
+    // Extract the file name from the URL
+    const fileUrl = resume.resumeUrl;
+    const fileName = fileUrl.split("/").pop(); // last part of URL
+
+    // 2️⃣ Delete from Supabase Storage
+    const { error: deleteError } = await supabase.storage
+      .from("resumes")
+      .remove([fileName]);
+
+    if (deleteError) {
+      console.error("Supabase Delete Error:", deleteError);
+      return res.status(500).json({
+        success: false,
+        error: "Failed to delete file from storage",
+      });
+    }
+
+    // 3️⃣ Delete from MongoDB
+    await Resume.findByIdAndDelete(id);
+
+    return res.json({
+      success: true,
+      message: "Resume deleted successfully",
+    });
+  } catch (err) {
+    console.error("Delete resume error:", err);
+    res.status(500).json({ success: false, error: "Server error" });
+  }
+});
+
 module.exports = router;
