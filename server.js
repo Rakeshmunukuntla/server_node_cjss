@@ -1,7 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
 const blogRoutes = require("./routes/blogRoutes");
@@ -9,6 +9,7 @@ const jobRoutes = require("./routes/jobRoutes");
 const resumeRoutes = require("./routes/resumeRoutes");
 const conversationsRouter = require("./routes/conversations");
 const contactRoutes = require("./routes/contactRoute");
+const eventRoutes = require("./routes/eventsRoute");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use("/jobs", jobRoutes);
 app.use("/resumes", resumeRoutes);
 app.use("/conversations", conversationsRouter);
 app.use("/contact", contactRoutes);
+app.use("/events", eventRoutes);
 
 const applicationRoutes = require("./routes/applicationsRoute");
 app.use("/applications", applicationRoutes);

@@ -1,10 +1,31 @@
+// const multer = require("multer");
+// const cloudinary = require("cloudinary").v2;
+// const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
+// // Cloudinary config
+// cloudinary.config({
+//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+//   api_key: process.env.CLOUDINARY_API_KEY,
+//   api_secret: process.env.CLOUDINARY_API_SECRET,
+// });
 
+// const storage = new CloudinaryStorage({
+//   cloudinary,
+//   params: {
+//     folder: "cjss_banners", // folder name in cloudinary
+//     allowed_formats: ["jpg", "jpeg", "png", "webp"],
+//   },
+// });
+
+// const upload = multer({ storage });
+
+// module.exports = upload;
+
+require("dotenv").config();
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
-// Cloudinary config
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -14,11 +35,9 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: "cjss_banners", // folder name in cloudinary
+    folder: "cjss_events",
     allowed_formats: ["jpg", "jpeg", "png", "webp"],
   },
 });
 
-const upload = multer({ storage });
-
-module.exports = upload;
+module.exports = multer({ storage });
