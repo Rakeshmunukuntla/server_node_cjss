@@ -1,19 +1,22 @@
-# Use Node official image
-FROM node:18-alpine
+# Use official Node.js LTS image
+FROM node:20-alpine
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Copy package files first (better caching)
+COPY package.json package-lock.json ./
 
 # Install dependencies
 RUN npm install --production
 
-# Copy source code
+# Copy rest of the source code
 COPY . .
 
-# Expose port (Render ignores this but good practice)
+# Set environment to production
+ENV NODE_ENV=production
+
+# Expose backend port
 EXPOSE 5000
 
 # Start server
