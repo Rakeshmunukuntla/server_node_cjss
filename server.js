@@ -10,6 +10,9 @@ const resumeRoutes = require("./routes/resumeRoutes");
 const conversationsRouter = require("./routes/conversations");
 const contactRoutes = require("./routes/contactRoute");
 const eventRoutes = require("./routes/eventsRoute");
+const mentorRoutes = require("./routes/mentorRoutes");
+
+
 
 const app = express();
 
@@ -25,6 +28,7 @@ app.use("/resumes", resumeRoutes);
 app.use("/conversations", conversationsRouter);
 app.use("/contact", contactRoutes);
 app.use("/events", eventRoutes);
+app.use("/mentors", mentorRoutes);
 
 const applicationRoutes = require("./routes/applicationsRoute");
 app.use("/applications", applicationRoutes);
