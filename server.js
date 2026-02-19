@@ -11,6 +11,8 @@ const conversationsRouter = require("./routes/conversations");
 const contactRoutes = require("./routes/contactRoute");
 const eventRoutes = require("./routes/eventsRoute");
 const mentorRoutes = require("./routes/mentorRoutes");
+const leaderRoutes = require("./routes/leadersRoutes");
+const parentalLeaderRoutes = require("./routes/parentalLeaderRoutes");
 
 
 
@@ -29,6 +31,9 @@ app.use("/conversations", conversationsRouter);
 app.use("/contact", contactRoutes);
 app.use("/events", eventRoutes);
 app.use("/mentors", mentorRoutes);
+
+app.use("/leaders", leaderRoutes);
+app.use("/parental-leaders", parentalLeaderRoutes);
 
 const applicationRoutes = require("./routes/applicationsRoute");
 app.use("/applications", applicationRoutes);
