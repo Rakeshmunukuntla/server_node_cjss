@@ -40,6 +40,7 @@ app.use("/applications", applicationRoutes);
 
 const path = require("path");
 // const express = require("express");
+//for testing
 
 // Serve uploaded images
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -53,4 +54,4 @@ mongoose
       console.log(`Server running on port ${process.env.PORT || 5000}`)
     );
   })
-  .catch((err) => console.error("MongoDB connection error:", err));
+  .catch((err) => console.error("MongoDB connection error ,please check the server:", err));
